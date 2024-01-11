@@ -14,7 +14,7 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "TestWithValidCredentials")
     public Object[][] TestWithValidCredentials() {
         return new Object[][]{
-                {"deskodess01", "dessskooo@gmail.bg", "d3sk0l", "d3sk0l"}
+                {"deskodess02", "dessskoooo@gmail.bg", "d3sk0l", "d3sk0l"}
         };
     }
 
@@ -57,7 +57,7 @@ public class RegisterTests extends BaseTest {
     @DataProvider(name = "TestWithInvalidCredentials")
     public Object[][] TestWithInvalidCredentials() {
         return new Object[][]{
-                {"deskoldeskoldes", "deskole#gmail.bg", "15951", "123123"}
+                {"deskoldeskoldes2", "deskole1#gmail.bg", "15952", "123123"}
         };
     }
 

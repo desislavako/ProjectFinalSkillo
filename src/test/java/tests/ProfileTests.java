@@ -29,7 +29,7 @@ public class ProfileTests extends BaseTest {
         headerPage.clickProfileLink();
     }
 
-    @Test(dataProvider = "credentialsInfo")
+    @Test(dataProvider = "credentialsInfo") ///da se pogledne
     public void likePostAsLoggedInUserTest(String username, String password) {
 
         profilePage = new ProfilePage(driver);

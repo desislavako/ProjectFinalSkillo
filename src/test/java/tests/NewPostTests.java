@@ -25,7 +25,7 @@ public class NewPostTests extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "uploadPicture")
+    @Test(dataProvider = "uploadPicture") ///da se pogledne
     public void uploadPictureTest(String username, String password, File file, String caption) {
 
         WebDriver driver = super.getDriver();

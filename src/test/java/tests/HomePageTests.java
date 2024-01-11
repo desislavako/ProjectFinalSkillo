@@ -15,7 +15,7 @@ public class HomePageTests extends BaseTest {
         modalPage.waitForVisibilityOfModal();
     }
     @Test
-    public void likePostAsLoggedOutUserTest() {
+    public void likePostAsLoggedOutUserTest() {  //da se pogledne
         openLatestPost();
 
         ModalPage modalPage = new ModalPage(driver);
@@ -29,7 +29,7 @@ public class HomePageTests extends BaseTest {
     }
 
     @Test
-    public void dislikePostAsLoggedOutUserTest() {
+    public void dislikePostAsLoggedOutUserTest() { //da se pogledne
 
         openLatestPost();
 
