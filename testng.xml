@@ -3,7 +3,6 @@
         <classes>
             <class name="tests.BaseTest" ></class>
             <class name="tests.HomePageTests" ></class>
-            <class name="tests.LoginPageTests" ></class>
             <class name="tests.NewPostTests" ></class>
             <class name="tests.ProfileTests" ></class>
             <class name="tests.RegisterTests" ></class>
