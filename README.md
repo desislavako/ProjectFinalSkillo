@@ -4,7 +4,6 @@ If a test failure occurs, a screenshot gets saved in a 'screenshots' folder.
 The project contains the following test scenarios:
 - test with valid credentials
 - test with invalid credentials
-- login test
 - like post as logged in user
 - unlike post as logged in user
 - write comment test
