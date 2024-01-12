@@ -30,7 +30,6 @@ public class BaseTest {
     protected WebDriver driver;
     protected HomePage homePage;
     protected HeaderPage headerPage;
-    protected LoginPage loginPage;
     protected NewPostTests newPostTests;
 
 
