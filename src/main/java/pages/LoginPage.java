@@ -39,9 +39,7 @@ public class LoginPage extends BasePage {
         return wait.until(ExpectedConditions.urlToBe(LOGIN_URL));
     }
 
-    public void enterUserName(String username) {
-        usernameField.sendKeys(username);
-    }
+    public void enterUserName(String username) {usernameField.sendKeys(username);}
 
     public void enterPassword(String password) {
         passwordField.sendKeys(password);
@@ -67,21 +65,14 @@ public class LoginPage extends BasePage {
         return wait.until(ExpectedConditions.urlToBe(LOGIN_URL));
     }
 
-    public RegisterPage clickRegisterLink() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.elementToBeClickable(registerLink));
-        registerLink.click();
-//        clickOnElement(registerLink);
-        return new RegisterPage(driver);
-    }
     public void navigateTo() {
         this.driver.get(LOGIN_URL);
     }
 
     public void logIn(String username, String password) {
         navigateTo();
-        enterUserName (username);
-        enterPassword (password);
+        enterUserName(username);
+        enterPassword(password);
         clickSignInButton();
     }
 }

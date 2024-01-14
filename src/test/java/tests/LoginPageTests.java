@@ -36,7 +36,7 @@ public class LoginPageTests extends BaseTest {
         ProfilePage profilePage = new ProfilePage(driver);
         profilePage.isUrlLoaded();
 
-       // Assert.assertEquals(profilePage.getUsername(), username);
+
 
 
 

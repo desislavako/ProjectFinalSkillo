@@ -26,7 +26,7 @@ public class HeaderPage extends BasePage {
     }
 
     public LoginPage clickLoginLink() {
-        //clickOnElement(loginLink);
+
         loginLink.click();
         return new LoginPage(driver);
     }
@@ -42,7 +42,5 @@ public class HeaderPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(profileLink));
         profileLink.click();
     }
-//    public void clickLogin(){
-//        loginLink.click();
-//    }
+
 }

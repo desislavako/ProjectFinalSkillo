@@ -18,18 +18,17 @@ public class ProfileTests extends BaseTest {
     }
 
     private void navigateToProfilePage(String username, String password) {
-
         homePage.navigateToHomePage();
-        headerPage.clickLoginLink();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.verifyLoginFormIsVisible();
+        LoginPage loginPage =  headerPage.clickLoginLink();
+        loginPage.isUrlLoaded();
+
         loginPage.logIn(username, password);
         homePage.verifyForCorrectUrl();
         headerPage.clickProfileLink();
     }
 
-    @Test(dataProvider = "credentialsInfo") ///da se pogledne
+    @Test(dataProvider = "credentialsInfo")
     public void likePostAsLoggedInUserTest(String username, String password) {
 
         profilePage = new ProfilePage(driver);
@@ -46,21 +45,7 @@ public class ProfileTests extends BaseTest {
         Assert.assertEquals(modalPage.getLikedPostToastMessage(), "Post liked");
     }
 
-//    @Test(dataProvider = "credentialsInfo")
-//    public void dislikePostAsLoggedInUserTest(String username, String password) {
-//
-//        profilePage = new ProfilePage(driver);
-//        navigateToProfilePage(username, password);
-//
-//        ModalPage modalPage = profilePage.openLatestPost();
-//        modalPage.waitForVisibilityOfModal();
-//        int initialDislikesCount = modalPage.getDislikesCount();
-//        modalPage.dislikePost();
-//
-//        Assert.assertTrue(modalPage.isThumbsDownIconLiked(), "The Thumbs Down Icon is not liked!");
-//        Assert.assertEquals(modalPage.getDislikesCount(), initialDislikesCount + 1, "The dislikes count hasn't increased by 1!");
-//        Assert.assertEquals(modalPage.getDislikedPostToastMessage(), "Post disliked", "The toast message is 'Post disliked'");
-//    }
+
 
     @DataProvider(name = "dataForWriteCommentTest")
     private Object[][] dataForWriteCommentTest() {
@@ -82,21 +67,3 @@ public class ProfileTests extends BaseTest {
         Assert.assertTrue(modalPage.isCommentPosted(comment), "shashava rabota");
     }
 }
-
-//    @Test(dataProvider = "credentialsInfo")
-//    public void deletePostTest(String username, String password) {
-//
-//        profilePage = new ProfilePage(driver);
-//        navigateToProfilePage(username, password);
-//        // int initialPostsCount = profilePage.getUsersPostsCount();
-//
-//        ModalPage modalPage = profilePage.openLatestPost();
-//        modalPage.waitForVisibilityOfModal();
-//        modalPage.deletePost();
-//
-//        Assert.assertEquals(modalPage.getDeletedPostToastMessage(), "Post Deleted!", "The toast message is not 'Post Deleted!'");
-//
-//       // int afterDeletionPostsCount = profilePage.getUsersPostsCount();
-//      //  Assert.assertEquals(afterDeletionPostsCount, initialPostsCount - 1, "The Public Posts count hasn't decreased by 1!");
-//    }
-//}

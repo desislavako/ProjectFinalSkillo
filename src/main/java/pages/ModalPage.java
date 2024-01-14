@@ -62,16 +62,11 @@ public class ModalPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void modalImage() {
 
-        modalImage = driver.findElement(By.className("modal-content"));
-    }
 
     public void waitForVisibilityOfElement() {
         waitForVisibilityOfElement(modalImage);
-//        WebElement modalImageElement = modalImage.findElement(By.className("modal-content"));
-//        wait.until(ExpectedConditions.visibilityOf(modalImageElement)).isDisplayed();
-//        return false;
+
     }
 
     public void addComment(String text) {
@@ -110,33 +105,9 @@ public class ModalPage extends BasePage {
         clickOnElement(thumbsDownIcon);
     }
 
-    public boolean isThumbsDownIconLiked() {
-        waitForVisibilityOfElement(likedThumbsDownIcon);
-
-        return likedThumbsDownIcon.getAttribute("class").contains("liked");
-    }
-
-    public int getDislikesCount() {
-        waitForVisibilityOfElement(dislikesCount);
-
-        return Integer.parseInt(String.valueOf(dislikesCount.getText().charAt(0)));
-    }
-
-    public void deletePost() {
-        clickOnElement(deleteLink);
-        clickOnElement(deleteConfirmButton);
-    }
 
     public String getLikedPostToastMessage() {
         return getToastMessage(likedPostToastMessage);
-    }
-
-    public String getDislikedPostToastMessage() {
-        return getToastMessage(dislikedPostToastMessage);
-    }
-
-    public String getDeletedPostToastMessage() {
-        return getToastMessage(deletedPostToastMessage);
     }
 
     public void waitForVisibilityOfModal() {

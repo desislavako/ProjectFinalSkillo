@@ -15,8 +15,7 @@ public class ProfilePage extends BasePage {
     public static final String PROFILE_URL = "http://training.skillo-bg.com:4200/users/";
     private final WebDriver driver;
 
-//    @FindBy(css = ".gallery-item")
-//    private List<WebElement> listOfUsersPosts;
+
     By elementSelector = By.cssSelector(".gallery-item");
 
     public ProfilePage(WebDriver driver) {
@@ -46,10 +45,6 @@ public class ProfilePage extends BasePage {
     }
     public List<WebElement> getUserPosts() {
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(elementSelector));
-    }
-
-    public int getUsersPostsCount() {
-        return getUserPosts().size();
     }
 
 }

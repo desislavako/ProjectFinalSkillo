@@ -28,8 +28,7 @@ public class HomePage extends BasePage {
     }
 
     public void navigateToHomePage() {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-//        return wait.until(ExpectedConditions.urlToBe(HOME_URL));
+
         driver.get(HOME_URL);
     }
 

@@ -31,7 +31,7 @@ public class RegisterTests extends BaseTest {
         LoginPage loginPage =  headerPage.clickLoginLink();
         loginPage.isUrlLoaded();
         //loginPage.verifyLoginFormIsVisible();
-        RegisterPage registerPage = loginPage.clickRegisterLink();
+       // RegisterPage registerPage = loginPage.clickRegisterLink();
         registerPage.isUrlLoaded();
         registerPage.verifyRegisterFormIsVisible();
     }

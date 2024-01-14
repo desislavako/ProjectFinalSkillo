@@ -7,7 +7,7 @@ import pages.ModalPage;
 
 public class HomePageTests extends BaseTest {
     @Test
-    public void likePostAsLoggedOutUserTest() {  //da se pogledne
+    public void likePostAsLoggedOutUserTest() {
         openLatestPost();
 
         ModalPage modalPage = new ModalPage(driver);
@@ -21,7 +21,7 @@ public class HomePageTests extends BaseTest {
     }
 
     @Test
-    public void dislikePostAsLoggedOutUserTest() { //da se pogledne
+    public void dislikePostAsLoggedOutUserTest() {
 
         openLatestPost();
 
