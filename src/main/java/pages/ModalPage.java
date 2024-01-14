@@ -1,17 +1,22 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ModalPage extends BasePage {
 
     @FindBy(className = "modal-content")
-    private WebElement modal;
+    private WebElement modalImage;
 
     @FindBy(css = ".like.fa-heart")
     private WebElement heartIcon;
@@ -57,8 +62,16 @@ public class ModalPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void waitForVisibilityOfModal() {
-        waitForVisibilityOfElement(modal);
+    public void modalImage() {
+
+        modalImage = driver.findElement(By.className("modal-content"));
+    }
+
+    public void waitForVisibilityOfElement() {
+        waitForVisibilityOfElement(modalImage);
+//        WebElement modalImageElement = modalImage.findElement(By.className("modal-content"));
+//        wait.until(ExpectedConditions.visibilityOf(modalImageElement)).isDisplayed();
+//        return false;
     }
 
     public void addComment(String text) {
@@ -124,5 +137,9 @@ public class ModalPage extends BasePage {
 
     public String getDeletedPostToastMessage() {
         return getToastMessage(deletedPostToastMessage);
+    }
+
+    public void waitForVisibilityOfModal() {
+        waitForVisibilityOfElement(modalImage);
     }
 }

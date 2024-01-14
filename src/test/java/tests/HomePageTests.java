@@ -6,21 +6,13 @@ import pages.LoginPage;
 import pages.ModalPage;
 
 public class HomePageTests extends BaseTest {
-
-    private void openLatestPost() {
-
-        homePage.navigateToHomePage();
-
-        ModalPage modalPage = homePage.openLatestPost();
-        modalPage.waitForVisibilityOfModal();
-    }
     @Test
     public void likePostAsLoggedOutUserTest() {  //da se pogledne
         openLatestPost();
 
         ModalPage modalPage = new ModalPage(driver);
         modalPage.likePost();
-        Assert.assertEquals(homePage.getToastMessage(), "You must login", "The toast message is not 'You must login'");
+        Assert.assertEquals(homePage.getToastMessage(), "You must login", "The toast message is 'You must login'");
 
 
         LoginPage loginPage = new LoginPage(driver);
@@ -42,5 +34,11 @@ public class HomePageTests extends BaseTest {
         loginPage.verifyForCorrectUrl();
     }
 
+    private void openLatestPost() {
 
+        homePage.navigateToHomePage();
+
+        ModalPage modalPage = homePage.openLatestPost();
+        modalPage.waitForVisibilityOfModal();
+    }
 }

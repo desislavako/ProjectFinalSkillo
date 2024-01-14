@@ -9,29 +9,35 @@ import pages.*;
 public class LoginPageTests extends BaseTest {
 
 
-    @DataProvider(name = "getUsers")
+    @DataProvider(name = "Users")
     public Object[][] Users() {
         return new Object[][]{
-                {"deskoldes", "d3sk0l", "deskoldes"},
+                {"deskoldes", "d3sk0l"},
         };
     }
 
     @Test(dataProvider = "Users")
     public void loginTest(String username, String password) {
 
-        HomePage homePage = new HomePage(driver);
-        homePage.navigateToHomePage();
+        HomePage homePage = new HomePage(super.getDriver());
+        homePage.navigateTo();
+        homePage.isUrlLoaded();
 
-        HeaderPage header = new HeaderPage(driver);
-        header.clickLoginLink();
+        HeaderPage headerMenu = new HeaderPage(driver);
+        headerMenu.clickLoginLink();
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.verifyForCorrectUrl();
+        loginPage.isUrlLoaded();
         loginPage.enterUserName(username);
         loginPage.enterPassword(password);
         loginPage.clickSignInButton();
 
-        homePage.verifyForCorrectUrl();
+        headerMenu.clickProfileLink();
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.isUrlLoaded();
+
+       // Assert.assertEquals(profilePage.getUsername(), username);
+
 
 
     }

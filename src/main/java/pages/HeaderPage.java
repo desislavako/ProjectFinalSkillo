@@ -21,12 +21,13 @@ public class HeaderPage extends BasePage {
     private WebElement newPostLink;
 
     public HeaderPage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     public LoginPage clickLoginLink() {
-        clickOnElement(loginLink);
+        //clickOnElement(loginLink);
+        loginLink.click();
         return new LoginPage(driver);
     }
 
@@ -36,15 +37,12 @@ public class HeaderPage extends BasePage {
         newPostLink.click();
     }
 
-    public ProfilePage clickProfileLink() {
-        clickOnElement(profileLink);
-        return new ProfilePage(driver);
+    public void clickProfileLink() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(profileLink));
+        profileLink.click();
     }
-
-    public void openLoginPage() {
-        clickOnElement(loginLink);
-    }
-
-    public void openProfilePage() {
-    }
+//    public void clickLogin(){
+//        loginLink.click();
+//    }
 }

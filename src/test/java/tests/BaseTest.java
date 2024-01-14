@@ -27,6 +27,7 @@ import static java.nio.file.Path.*;
 
 public class BaseTest {
     private static final String SCREENSHOT_DIR = "src\\test\\java\\resources\\screenshots\\";
+
     protected WebDriver driver;
     protected HomePage homePage;
     protected HeaderPage headerPage;
@@ -35,6 +36,7 @@ public class BaseTest {
 
     @BeforeSuite
     public void cleanDirectory() {
+
         cleanDirectory(SCREENSHOT_DIR);
     }
 
@@ -68,7 +70,7 @@ public class BaseTest {
             File screenshot = takesScreenshot.getScreenshotAs(OutputType.FILE);
             String testName = testResult.getName().concat(getCurrentTime());
             try {
-                FileUtils.copyFile(screenshot, new File(SCREENSHOT_DIR.concat(testName).concat(".jpeg")));
+                FileUtils.copyFile(screenshot, new File(SCREENSHOT_DIR.concat(testName).concat(".jpg")));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -99,6 +101,7 @@ public class BaseTest {
 
 
     protected WebDriver getDriver() {
+
         return driver;
     }
 }

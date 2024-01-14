@@ -4,9 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class RegisterPage extends BasePage {
-    private final String REGISTER_URL = BASE_URL + "/users/register";
+    private final String REGISTER_URL = "http://training.skillo-bg.com:4200/users/register";
 
     @FindBy(css = ".login-container form")
     private WebElement registerForm;
@@ -46,6 +50,7 @@ public class RegisterPage extends BasePage {
     public void verifyForCorrectUrl() {
         waitUrlToBe(REGISTER_URL);
     }
+
 
     public void verifyRegisterFormIsVisible() {
         waitForVisibilityOfElement(registerForm);
@@ -124,5 +129,9 @@ public class RegisterPage extends BasePage {
     private boolean isInvalidSignDisplayed(WebElement webElement) {
         waitForVisibilityOfElement(webElement);
         return webElement.getAttribute("class").contains("is-invalid");
+    }
+    public boolean isUrlLoaded(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        return wait.until(ExpectedConditions.urlContains(REGISTER_URL));
     }
 }

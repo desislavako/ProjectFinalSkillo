@@ -8,15 +8,19 @@ import pages.*;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class BasePage {
-    protected final String BASE_URL = "http://training.skillo-bg.com:4200";
+    protected final String BASE_URL = "http://training.skillo-bg.com:4200/post/all";
     protected WebDriver driver;
-    private WebDriverWait wait;
+    protected WebDriverWait wait;
 
     protected BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+    }
+
+    public BasePage() {
     }
 
     protected void clickOnElement(WebElement webElement) {
@@ -42,4 +46,7 @@ public class BasePage {
         return webElement.getText();
     }
 
+    public void verifyForCorrectUrl() {
+        waitUrlToBe(BASE_URL);
+    }
 }

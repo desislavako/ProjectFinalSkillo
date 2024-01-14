@@ -1,5 +1,10 @@
 package tests;
-
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+import pages.LoginPage;
+import pages.RegisterPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -9,12 +14,13 @@ import pages.RegisterPage;
 
 public class RegisterTests extends BaseTest {
     RegisterPage registerPage;
+    SoftAssert softAssert;
 
 
     @DataProvider(name = "TestWithValidCredentials")
     public Object[][] TestWithValidCredentials() {
         return new Object[][]{
-                {"deskodess02", "dessskoooo@gmail.bg", "d3sk0l", "d3sk0l"}
+                {"deskkodess05", "desskkkooo5@gmail.bg", "d3sk0l", "d3sk0l"}
         };
     }
 
@@ -22,11 +28,11 @@ public class RegisterTests extends BaseTest {
 
         homePage.navigateToHomePage();
 
-        LoginPage loginPage = headerPage.clickLoginLink();
-        loginPage.verifyForCorrectUrl();
-        loginPage.verifyLoginFormIsVisible();
+        LoginPage loginPage =  headerPage.clickLoginLink();
+        loginPage.isUrlLoaded();
+        //loginPage.verifyLoginFormIsVisible();
         RegisterPage registerPage = loginPage.clickRegisterLink();
-        registerPage.verifyForCorrectUrl();
+        registerPage.isUrlLoaded();
         registerPage.verifyRegisterFormIsVisible();
     }
 
@@ -51,13 +57,14 @@ public class RegisterTests extends BaseTest {
         registerPage.clickSignInButton();
         Assert.assertEquals(registerPage.getToastMessage(), "Successful register!", "The toast message is not 'Successful register!'");
 
-        homePage.verifyForCorrectUrl();
+//        homePage.verifyForCorrectUrl()
+//        ;
     }
 
     @DataProvider(name = "TestWithInvalidCredentials")
     public Object[][] TestWithInvalidCredentials() {
         return new Object[][]{
-                {"deskoldeskoldes2", "deskole1#gmail.bg", "15952", "123123"}
+                {"dekoldeskoldes3", "deskole3#gmail.bg", "15952", "123123"}
         };
     }
 

@@ -1,13 +1,19 @@
 package pages;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 
 public class LoginPage extends BasePage {
-    private final String LOGIN_URL = BASE_URL + "/users/login";
-
+    public static final String LOGIN_URL = "http://training.skillo-bg.com:4200/users/login";
+    private final WebDriver driver;
     @FindBy(css = "app-login form")
     private WebElement loginForm;
 
@@ -20,34 +26,35 @@ public class LoginPage extends BasePage {
     @FindBy(id = "sign-in-button")
     private WebElement signInButton;
 
-    @FindBy(linkText = "Register")
+    @FindBy(xpath = "//a[@href=\"/users/register\"]")
     private WebElement registerLink;
 
 
     public LoginPage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    public void navigateTo(){
-        this.driver.get(LOGIN_URL);
-    }
-    public void logIn(String username, String password) {
-        typeInField(usernameField, username);
-        typeInField(passwordField, password);
-        clickOnElement(signInButton);
-        HeaderPage headerPage = new HeaderPage(driver);
+    public boolean isLoginPageLoaded(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        return wait.until(ExpectedConditions.urlToBe(LOGIN_URL));
     }
 
     public void enterUserName(String username) {
-        enterUserName(usernameField,username);
+        usernameField.sendKeys(username);
     }
 
-    private void enterUserName(WebElement usernameField, String username) {
+    public void enterPassword(String password) {
+        passwordField.sendKeys(password);
+    }
 
+    public void clickSignInButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(signInButton));
+        signInButton.click();
     }
 
     public void verifyLoginFormIsVisible() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         waitForVisibilityOfElement(loginForm);
     }
 
@@ -55,17 +62,29 @@ public class LoginPage extends BasePage {
         waitUrlToBe(BASE_URL + "/posts/all");
     }
 
+    public boolean isUrlLoaded() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.urlToBe(LOGIN_URL));
+    }
+
     public RegisterPage clickRegisterLink() {
-        clickOnElement(registerLink);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.elementToBeClickable(registerLink));
+        registerLink.click();
+//        clickOnElement(registerLink);
         return new RegisterPage(driver);
     }
-
-    public WebElement clickSignInButton() {
-        waitForVisibilityOfElement(signInButton);
-        return signInButton;
+    public void navigateTo() {
+        this.driver.get(LOGIN_URL);
     }
-    public void enterPassword(String password) {}
 
+    public void logIn(String username, String password) {
+        navigateTo();
+        enterUserName (username);
+        enterPassword (password);
+        clickSignInButton();
+    }
 }
+
 
 
